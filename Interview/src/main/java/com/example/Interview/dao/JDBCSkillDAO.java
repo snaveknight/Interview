@@ -52,16 +52,22 @@ public class JDBCSkillDAO implements SkillDao {
     }
 
     @Override
-    public Skill addSkillToEmployee(String fieldId, String employeeId){
-        System.out.println(fieldId);
-    String sqlThisSkill = "Select skill_id \n" +
-            "FROM field_skill\n" +
-            "Where field_id = ?";
+    public Skill addSkillToEmployee(String fieldId, String employeeId, String experience){
+    Skill skill = new Skill();
+        String sqlThisSkill = "SELECT skill_id FROM field_skill WHERE field_id = ?";
      SqlRowSet sqlResults = jdbcTemplate.queryForRowSet(sqlThisSkill, fieldId);
-    String skillId = sqlResults.getString("skill_id");
+String skillId = "";
+
+     while (sqlResults.next()) {
+          skillId = sqlResults.getString("skill_id");
+          break;
+     }
     String sqlField = "Insert Into employee_skill (employee_id, skill_id) values (?,?)";
     jdbcTemplate.update(sqlField, employeeId, skillId);
-        return null;
+
+    String sqlExperience = "Insert Into skill ( skill_id,experience) Values (?,?)";
+    jdbcTemplate.update(sqlExperience, skillId,experience);
+        return skill;
     }
 }
 

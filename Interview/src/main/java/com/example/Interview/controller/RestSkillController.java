@@ -31,6 +31,7 @@ public class RestSkillController {
         ObjectMapper mapper = new ObjectMapper();
         JsonNode node = mapper.readTree(updateRequest);
         String fieldId = node.get("field").get("id").asText();
-        skillDao.addSkillToEmployee(fieldId, employeeId);
+        String experience = node.get("experience").asText();
+        skillDao.addSkillToEmployee(fieldId, employeeId, experience);
     }
 }

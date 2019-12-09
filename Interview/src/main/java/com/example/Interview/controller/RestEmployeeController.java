@@ -17,7 +17,6 @@ public class RestEmployeeController {
     @Autowired
     private EmployeeDao employeeDao;
 
-
     @GetMapping
     public List<Employee> getAllEmployeesEndPoint() {
         List<Employee> allEmployees = employeeDao.getAllEmployees();

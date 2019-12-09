@@ -9,7 +9,7 @@ public interface SkillDao {
 
     public List<Skill> getAllSkillsByEmployeeId(String employeeId);
 
-    Skill addSkillToEmployee(String fieldId, String employeeId);
+    Skill addSkillToEmployee(String fieldId, String employeeId, String experience);
 
 
 
